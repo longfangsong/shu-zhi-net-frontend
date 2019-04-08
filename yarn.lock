@@ -7142,6 +7142,13 @@ vue-loader@^15.6.4:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-overwatch-loading@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/vue-overwatch-loading/-/vue-overwatch-loading-0.1.5.tgz#e427dc46881b0a9b08a0b6b64ecf8833208f722a"
+  integrity sha512-HPJIZ+Izeg50WVzmfAHl+np0gHErRdZeh3DMx+V+8YaQmQcv8TNkqX9MYDX/Y/22k+XllA2vKCcD8+BBOv9K6A==
+  dependencies:
+    vue "^2.5.11"
+
 vue-property-decorator@^8.0.0:
   version "8.1.0"
   resolved "http://registry.npm.taobao.org/vue-property-decorator/download/vue-property-decorator-8.1.0.tgz#66493a5350e7f643e852e7698ec2c883554daa79"
@@ -7175,7 +7182,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "http://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue@^2.6.6:
+vue@^2.5.11, vue@^2.6.6:
   version "2.6.10"
   resolved "http://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2Fvue%2Fdownload%2Fvue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=

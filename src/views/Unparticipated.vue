@@ -1,13 +1,14 @@
 <template>
     <div>
         <h1 v-if="!$store.getters.logged">请先登录</h1>
-        <div v-else>
-            <UnparticipatedActivity
-                    :item="item"
-                    :key="item.id"
-                    v-for="item in $store.getters.getActivitiesForType($route.params.id)">
-            </UnparticipatedActivity>
-        </div>
+        <vue-overwatch-loading :Radius="45" Color="#ffff66"
+                               class="loading"
+                               v-if="$store.state.activity.activities.length === 0"></vue-overwatch-loading>
+        <UnparticipatedActivity
+                :item="item"
+                :key="item.id"
+                v-for="item in $store.getters.getActivitiesForType($route.params.id)">
+        </UnparticipatedActivity>
     </div>
 </template>
 
@@ -33,6 +34,5 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
 </style>
