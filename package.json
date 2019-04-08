@@ -8,19 +8,30 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0-rc.1",
+    "axios": "^0.18.0",
     "core-js": "^2.6.5",
+    "date-fns": "^2.0.0-alpha.27",
+    "fp-ts": "^1.15.1",
+    "lodash.partial": "^4.2.1",
+    "material-design-icons-iconfont": "^3.0.3",
+    "roboto-fontface": "*",
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^8.0.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuetify": "^1.5.5",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
+    "@types/lodash.partial": "^4.2.6",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-typescript": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "typescript": "^3.2.1",
+    "vue-cli-plugin-vuetify": "^0.5.0",
     "vue-template-compiler": "^2.5.21"
   }
 }
