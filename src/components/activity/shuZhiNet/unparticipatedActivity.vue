@@ -1,7 +1,7 @@
 <template>
     <Activity :item="item">
         <v-card-actions class="justify-center">
-            <v-btn @click="showTakePartDialog = true" color="yellow" flat small>报名</v-btn>
+            <v-btn @click="showTakePartDialog = true" class="third" color="fourth" flat small>报名</v-btn>
         </v-card-actions>
         <v-dialog v-if="this.$store.getters.logged" v-model="showTakePartDialog">
             <v-card>
@@ -15,7 +15,7 @@
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-actions>
-                    <v-btn :loading="loading" @click="takePart" block color="primary">确认报名</v-btn>
+                    <v-btn :loading="loading" @click="takePart" block class="third" color="fourth">确认报名</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

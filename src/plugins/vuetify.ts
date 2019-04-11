@@ -9,4 +9,10 @@ Vue.use(Vuetify, {
         locales: {zhHans},
         current: 'zh-Hans'
     },
+    theme: {
+        primary: '#0D375F',
+        secondary: '#BAD3E6',
+        third: '#C50020',
+        fourth: '#E1DDDD'
+    }
 });

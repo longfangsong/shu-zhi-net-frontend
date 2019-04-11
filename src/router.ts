@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Login from '@/views/Login.vue';
 import Participated from '@/views/Participated.vue';
 import Unparticipated from '@/views/Unparticipated.vue';
+import Lao from '@/views/Lao.vue';
 
 Vue.use(Router);
 
@@ -13,6 +14,10 @@ export default new Router({
         {
             path: '/',
             redirect: '/participated'
+        },
+        {
+            path: '/unparticipated/劳',
+            component: Lao
         },
         {
             path: '/unparticipated/:id',

@@ -1,7 +1,7 @@
 <template>
     <Activity :item="item">
         <v-card-actions class="justify-center">
-            <v-btn @click="optOut" color="yellow" flat small>取消报名</v-btn>
+            <v-btn @click="optOut" class="third" color="fourth" flat small>取消报名</v-btn>
         </v-card-actions>
     </Activity>
 </template>

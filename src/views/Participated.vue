@@ -12,7 +12,7 @@
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
-    import ParticipatedActivity from "@/components/activity/participatedActivity.vue";
+    import ParticipatedActivity from "@/components/activity/shuZhiNet/participatedActivity.vue";
 
     @Component({
         components: {ParticipatedActivity},

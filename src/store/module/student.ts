@@ -39,7 +39,11 @@ const mutations = {
 
 const actions = {
     async login({commit}: ActionContext<State, any>, payload: { username: string, password: string }) {
-        const response = await Axios.post('login', {
+        const response = await Axios.post('/auth/login/shu-zhi-net', {
+            username: payload.username,
+            password: payload.password
+        });
+        await Axios.post('/auth/login/volunteer', {
             username: payload.username,
             password: payload.password
         });
@@ -55,6 +59,9 @@ const actions = {
     async logout({commit}: ActionContext<State, any>) {
         commit(mutationTypes.setStudent, none);
         Axios.defaults.headers.common.Authorization = '';
+        localStorage.removeItem('name');
+        localStorage.removeItem('username');
+        localStorage.removeItem('token');
     },
     async restoreLogin({commit}: ActionContext<State, any>) {
         const name = localStorage.getItem('name');

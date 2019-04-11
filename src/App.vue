@@ -1,43 +1,43 @@
 <template>
-    <v-app class="red lighten-5" id="inspire">
+    <v-app class="secondary" id="inspire">
         <v-navigation-drawer
                 app
-                class="red"
+                class="secondary"
                 clipped
                 fixed
                 v-model="drawer">
             <v-list dense>
                 <v-list-tile :key="item.text" :target="item.to" :to="item.to" router v-for="item in items">
                     <v-list-tile-action>
-                        <v-icon class="yellow--text">{{ item.icon }}</v-icon>
+                        <v-icon class="primary--text">{{ item.icon }}</v-icon>
                     </v-list-tile-action>
-                    <v-list-tile-title class="yellow--text" v-text="item.text"></v-list-tile-title>
+                    <v-list-tile-title class="primary--text" v-text="item.text"></v-list-tile-title>
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
         <v-toolbar
                 app
                 clipped-left
-                color="red darken-4"
+                color="primary"
                 dense
                 fixed
         >
-            <v-toolbar-side-icon @click="drawer = !drawer" class="yellow--text">
+            <v-toolbar-side-icon @click="drawer = !drawer" class="fourth--text">
                 <v-icon>list</v-icon>
             </v-toolbar-side-icon>
             <v-toolbar-title class="mr-5 align-center">
-                <span class="title yellow--text">
+                <span class="title fourth--text">
                     {{URL_CHINESE_MAP.get($router.currentRoute.path)}}
                 </span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <span class="subheading yellow--text">
+            <span class="subheading fourth--text">
                 {{$store.getters.studentName.getOrElse("请先登录")}}
             </span>
-            <v-btn class="yellow lighten-1" small to="/login" v-if="!$store.getters.logged">
+            <v-btn class="third fourth--text" small to="/login" v-if="!$store.getters.logged">
                 登录
             </v-btn>
-            <v-btn @click="logout" class="yellow lighten-1" small v-else>
+            <v-btn @click="logout" class="third fourth--text" small v-else>
                 注销
             </v-btn>
         </v-toolbar>
