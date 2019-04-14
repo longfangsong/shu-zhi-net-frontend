@@ -4,6 +4,7 @@ import Login from '@/views/Login.vue';
 import Participated from '@/views/Participated.vue';
 import Unparticipated from '@/views/Unparticipated.vue';
 import Lao from '@/views/Lao.vue';
+import VolunteerParticipated from '@/views/VolunteerParticipated.vue';
 
 Vue.use(Router);
 
@@ -32,5 +33,11 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: Login,
-        }],
+        },
+        {
+            path: '/volunteer-participated',
+            name: 'volunteer-participated',
+            component: VolunteerParticipated
+        }
+    ],
 });

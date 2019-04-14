@@ -1,20 +1,6 @@
 <template>
     <v-app class="secondary" id="inspire">
-        <v-navigation-drawer
-                app
-                class="secondary"
-                clipped
-                fixed
-                v-model="drawer">
-            <v-list dense>
-                <v-list-tile :key="item.text" :target="item.to" :to="item.to" router v-for="item in items">
-                    <v-list-tile-action>
-                        <v-icon class="primary--text">{{ item.icon }}</v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-title class="primary--text" v-text="item.text"></v-list-tile-title>
-                </v-list-tile>
-            </v-list>
-        </v-navigation-drawer>
+        <NavBar :open="openNavBar"></NavBar>
         <v-toolbar
                 app
                 clipped-left
@@ -22,7 +8,7 @@
                 dense
                 fixed
         >
-            <v-toolbar-side-icon @click="drawer = !drawer" class="fourth--text">
+            <v-toolbar-side-icon @click="openNavBar = !openNavBar" class="fourth--text">
                 <v-icon>list</v-icon>
             </v-toolbar-side-icon>
             <v-toolbar-title class="mr-5 align-center">
@@ -53,28 +39,26 @@
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
+    import NavBar from "@/components/NavBar.vue";
 
-    @Component
+    @Component({
+        components: {NavBar}
+    })
     export default class App extends Vue {
+        private openNavBar = true;
+
         private URL_CHINESE_MAP = new Map([
-            ["/participated", "我的活动"],
+            ["/paticipated", "我的活动"],
+            ["/volunteer-participated", "我的志愿者活动"],
             ["/unparticipated/德", "德"],
             ["/unparticipated/智", "智"],
             ["/unparticipated/体", "体"],
             ["/unparticipated/美", "美"],
             ["/unparticipated/劳", "劳"],
             ["/login", "登录"],
-            ["/home", "首页"]
+            ["/home", "首页"],
+            ["/library", "图书馆"],
         ]);
-        private items = [
-            {icon: "trending_up", text: "德", to: "/unparticipated/德"},
-            {icon: "subscriptions", text: "智", to: "/unparticipated/智"},
-            {icon: "history", text: "体", to: "/unparticipated/体"},
-            {icon: "featured_play_list", text: "美", to: "/unparticipated/美"},
-            {icon: "watch_later", text: "劳", to: "/unparticipated/劳"},
-            {icon: "watch_later", text: "我的活动", to: "/participated"},
-        ];
-        private drawer = null;
 
         private async mounted() {
             if (!this.$store.getters.logged) {

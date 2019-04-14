@@ -74,22 +74,22 @@ const mutations = {
 
 const actions = {
     async fetchActivities({commit}: ActionContext<State, any>) {
-        const response = await Axios.get('activities');
+        const response = await Axios.get('/api/activities');
         response.data.map(partial(commit, mutationTypes.upsert, _));
     },
     async fetchParticipatingActivities({commit}: ActionContext<State, any>) {
-        const response = await Axios.get('activities?participating=true');
+        const response = await Axios.get('/api/activities?participating=true');
         response.data.map(partial(commit, mutationTypes.upsert, _));
     },
     async takePart({commit, state}: ActionContext<State, any>,
                    payload: { activity_id: string, phone_number: string, mail_address: string }
     ) {
-        await Axios.post('activities', payload);
+        await Axios.post('/api/activities', payload);
         const theActivity = findFirst(state.activities, (activity: Activity) => activity.id === payload.activity_id);
         commit(mutationTypes.upsert, {...theActivity, participate_info_id: null});
     },
     async optOut({commit}: ActionContext<State, any>, payload: { id: string }) {
-        await Axios.delete('activities?id=' + payload.id);
+        await Axios.delete('/api/activities?id=' + payload.id);
         commit(mutationTypes.delete, payload);
     }
 };

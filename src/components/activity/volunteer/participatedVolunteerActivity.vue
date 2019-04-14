@@ -20,7 +20,7 @@
         @Prop() private item!: VolunteerActivity;
 
         private async optOut() {
-            await this.$store.dispatch("optOutVolunteer", {id: this.item.name});
+            await this.$store.dispatch("optOutVolunteer", {activity_name: this.item.name});
         }
     }
 </script>

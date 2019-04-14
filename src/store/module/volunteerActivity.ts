@@ -12,9 +12,16 @@ export interface VolunteerActivity {
     readonly participated: boolean;
 }
 
+
 interface State {
     volunteerActivities: Array<VolunteerActivity>
 }
+
+const getters = {
+    getParticipated(activityState: State): Array<VolunteerActivity> {
+        return activityState.volunteerActivities.filter((it) => it.participated);
+    }
+};
 
 const state: State = {
     volunteerActivities: [],
@@ -37,7 +44,7 @@ const mutations = {
 
 const actions = {
     async fetchVolunteerActivities({commit}: ActionContext<State, any>) {
-        const response = await Axios.get('volunteer-activities');
+        const response = await Axios.get('/api/volunteer-activities');
         response.data
             .map((it: { name: string, team: string, participated: string }) => {
                 return {...it, participated: false};
@@ -45,7 +52,7 @@ const actions = {
             .map(partial(commit, mutationTypes.insert, _));
     },
     async fetchParticipatingVolunteerActivities({commit}: ActionContext<State, any>) {
-        const response = await Axios.get('volunteer-activities?participating=true');
+        const response = await Axios.get('/api/volunteer-activities?participating=true');
         response.data
             .map((it: { name: string, team: string, participated: string }) => {
                 return {...it, participated: true};
@@ -54,10 +61,10 @@ const actions = {
     },
     async takePartVolunteer({commit, state}: ActionContext<State, any>,
                             payload: { activity_name: string }) {
-        await Axios.post('volunteer-activities', payload);
+        await Axios.post('/api/volunteer-activities', payload);
     },
-    async optOut({commit}: ActionContext<State, any>, payload: { activity_name: string }) {
-        await Axios.delete('volunteer-activities?activity_name=' + payload.activity_name);
+    async optOutVolunteer({commit}: ActionContext<State, any>, payload: { activity_name: string }) {
+        await Axios.delete('/api/volunteer-activities?activity_name=' + payload.activity_name);
         commit(mutationTypes.delete, payload);
     }
 };
