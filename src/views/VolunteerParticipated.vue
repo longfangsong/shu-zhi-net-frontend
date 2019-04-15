@@ -2,7 +2,8 @@
     <div>
         <ParticipatedVolunteerActivity
                 :item="activity"
-                v-for="activity in !$store.getters.getParticipated"
+                :key="activity.name"
+                v-for="activity in $store.getters.getParticipatedVolunteer"
         ></ParticipatedVolunteerActivity>
     </div>
 </template>
@@ -16,7 +17,10 @@
     })
     export default class VolunteerParticipated extends Vue {
         private async mounted() {
-            if (this.$store.state.activity.activities.length === this.$store.getters.getParticipated.length) {
+            if (this.$store.state.volunteerActivity.volunteerActivities.length === 0) {
+                await this.$store.dispatch("fetchVolunteerActivities");
+            }
+            if (this.$store.getters.getParticipatedVolunteer.length === 0) {
                 await this.$store.dispatch("fetchParticipatingVolunteerActivities");
             }
         }
