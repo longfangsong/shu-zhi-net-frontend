@@ -20,7 +20,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </template>
-                <v-list-tile :to="'/paticipated'">
+                <v-list-tile :to="'/participated'">
                     <v-list-tile-content>
                         <v-list-tile-title>我的活动</v-list-tile-title>
                     </v-list-tile-content>
@@ -54,7 +54,8 @@
 
     @Component
     export default class NavBar extends Vue {
-        @Prop() open!: boolean;
+        @Prop()
+        private open!: boolean;
         private items = [
             {icon: "trending_up", text: "德", to: "/unparticipated/德"},
             {icon: "subscriptions", text: "智", to: "/unparticipated/智"},

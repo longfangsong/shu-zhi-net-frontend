@@ -48,7 +48,7 @@
         private openNavBar = true;
 
         private URL_CHINESE_MAP = new Map([
-            ["/paticipated", "我的活动"],
+            ["/participated", "我的活动"],
             ["/volunteer-participated", "我的志愿者活动"],
             ["/unparticipated/德", "德"],
             ["/unparticipated/智", "智"],

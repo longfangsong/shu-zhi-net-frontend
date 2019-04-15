@@ -63,7 +63,8 @@
         methods: {format}
     })
     export default class VolunteerActivityCard extends Vue {
-        @Prop() item!: VolunteerActivity;
+        @Prop()
+        private item!: VolunteerActivity;
         private showTime = false;
 
         get time() {
