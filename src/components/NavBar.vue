@@ -1,6 +1,6 @@
 <template>
     <v-navigation-drawer
-            :v-model="true"
+            v-model="open"
             app
             class="secondary"
             clipped
@@ -63,7 +63,6 @@
             {icon: "featured_play_list", text: "美", to: "/unparticipated/美"},
             {icon: "watch_later", text: "劳", to: "/unparticipated/劳"}
         ];
-        private drawer = null;
     }
 </script>
 
