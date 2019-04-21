@@ -17,13 +17,13 @@ const state: State = {
 
 const getters = {
     logged(studentState: State): boolean {
-        return studentState.student.isSome();
+        return studentState.student!.isSome();
     },
     studentName(studentState: State): Option<string> {
-        return studentState.student.map((it) => it.name);
+        return studentState.student!.map((it) => it.name);
     },
     username(studentState: State) {
-        return studentState.student.map((it) => it.username);
+        return studentState.student!.map((it) => it.username);
     }
 };
 
@@ -39,14 +39,11 @@ const mutations = {
 
 const actions = {
     async login({commit}: ActionContext<State, any>, payload: { username: string, password: string }) {
-        const response = await Axios.post('/auth/login/shu-zhi-net', {
-            username: payload.username,
-            password: payload.password
-        });
-        await Axios.post('/auth/login/volunteer', {
-            username: payload.username,
-            password: payload.password
-        });
+        const [response] = await Promise.all(['shu-zhi-net', 'volunteer', 'library']
+            .map((it) => Axios.post('/auth/login/' + it, {
+                username: payload.username,
+                password: payload.password
+            })));
         commit(mutationTypes.setStudent, {
             name: response.data.student_name,
             username: payload.username
@@ -62,6 +59,7 @@ const actions = {
         localStorage.removeItem('name');
         localStorage.removeItem('username');
         localStorage.removeItem('token');
+        window.location.reload();
     },
     async restoreLogin({commit}: ActionContext<State, any>) {
         const name = localStorage.getItem('name');

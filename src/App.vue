@@ -1,15 +1,22 @@
 <template>
     <v-app class="secondary" id="inspire">
-        <NavBar :open="openNavBar"></NavBar>
+        <v-navigation-drawer
+                app
+                class="secondary"
+                clipped
+                fixed
+                v-model="openNavBar">
+            <NavBar></NavBar>
+        </v-navigation-drawer>
         <v-toolbar
                 app
                 clipped-left
                 color="primary"
                 dense
-                fixed
-        >
+                fixed>
             <v-toolbar-side-icon @click="openNavBar = !openNavBar" class="fourth--text">
-                <v-icon>list</v-icon>
+                <!--                <v-icon>list</v-icon>-->
+                <img class="logo" src="../src/assets/logo.png">
             </v-toolbar-side-icon>
             <v-toolbar-title class="mr-5 align-center">
                 <span class="title fourth--text">
@@ -28,18 +35,14 @@
             </v-btn>
         </v-toolbar>
         <v-content>
-            <v-container fill-height>
-                <v-flex>
-                    <router-view></router-view>
-                </v-flex>
-            </v-container>
+            <router-view></router-view>
         </v-content>
     </v-app>
 </template>
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
-    import NavBar from "@/components/NavBar.vue";
+    import NavBar from "@/components/app/NavBar.vue";
 
     @Component({
         components: {NavBar}
@@ -48,16 +51,14 @@
         private openNavBar = true;
 
         private URL_CHINESE_MAP = new Map([
-            ["/participated", "我的活动"],
-            ["/volunteer-participated", "我的志愿者活动"],
-            ["/unparticipated/德", "德"],
-            ["/unparticipated/智", "智"],
-            ["/unparticipated/体", "体"],
-            ["/unparticipated/美", "美"],
-            ["/unparticipated/劳", "劳"],
+            ["/activities/德", "德"],
+            ["/activities/智", "智"],
+            ["/activities/体", "体"],
+            ["/activities/美", "美"],
+            ["/activities/劳", "劳"],
             ["/login", "登录"],
             ["/home", "首页"],
-            ["/library", "图书馆"],
+            ["/my", "我的"],
         ]);
 
         private async mounted() {
@@ -76,3 +77,10 @@
         }
     }
 </script>
+
+<style>
+    .logo {
+        width: 30px;
+        height: 30px;
+    }
+</style>

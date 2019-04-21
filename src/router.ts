@@ -1,43 +1,31 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '@/views/Login.vue';
-import Participated from '@/views/Participated.vue';
-import Unparticipated from '@/views/Unparticipated.vue';
-import Lao from '@/views/Lao.vue';
-import VolunteerParticipated from '@/views/VolunteerParticipated.vue';
+import My from "@/views/My.vue";
+import ActivityView from "@/views/ActivityView.vue";
 
 Vue.use(Router);
 
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [
-        {
+    routes: [{
             path: '/',
-            redirect: '/participated'
+        redirect: '/my'
         },
         {
-            path: '/unparticipated/劳',
-            component: Lao
+            path: '/activities/:id',
+            component: ActivityView
         },
         {
-            path: '/unparticipated/:id',
-            component: Unparticipated
-        },
-        {
-            path: '/participated',
-            name: 'participated',
-            component: Participated,
+            path: '/my',
+            name: 'my',
+            component: My,
         },
         {
             path: '/login',
             name: 'login',
             component: Login,
-        },
-        {
-            path: '/volunteer-participated',
-            name: 'volunteer-participated',
-            component: VolunteerParticipated
         }
-    ],
+    ]
 });

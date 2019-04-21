@@ -90,7 +90,29 @@
             </v-container>
         </v-card-text>
         <v-divider></v-divider>
-        <slot></slot>
+        <v-card-actions class="justify-center" v-if="$store.getters.logged">
+            <v-btn @click="optOut" class="third" color="fourth" flat small v-if="item.participated">取消报名</v-btn>
+            <v-btn @click="showTakePartDialog = true" class="third" color="fourth" flat small v-else>报名</v-btn>
+        </v-card-actions>
+        <v-card-actions class="justify-center" v-else>
+            <v-btn class="third" color="fourth" to="/login">请先登录</v-btn>
+        </v-card-actions>
+        <v-dialog v-if="this.$store.getters.logged" v-model="showTakePartDialog">
+            <v-card>
+                <v-card-text>
+                    <v-form>
+                        <v-text-field @keyup.enter="takePart" label="手机号" name="phoneNumber" prepend-icon="phone"
+                                      type="text" v-model="phoneNumber"></v-text-field>
+                        <v-text-field @keyup.enter="takePart" label="邮箱" name="email" prepend-icon="email"
+                                      type="text" v-model="email"></v-text-field>
+                    </v-form>
+                </v-card-text>
+                <v-divider></v-divider>
+                <v-card-actions>
+                    <v-btn :loading="loading" @click="takePart" block class="third" color="fourth">确认报名</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-card>
 </template>
 
@@ -104,7 +126,7 @@
             format
         }
     })
-    export default class ActivityComponent extends Vue {
+    export default class ActivityCard extends Vue {
         @Prop() private item!: Activity;
 
         private showStartTime = false;
@@ -117,6 +139,26 @@
 
         get endTime() {
             return format(this.item.start_time, "yyyy-MM-dd");
+        }
+
+        private async optOut() {
+            await this.$store.dispatch("optOut", this.item);
+        }
+
+        private showTakePartDialog = false;
+        private loading = false;
+        private phoneNumber = "";
+        private email = "";
+
+        private async takePart() {
+            this.loading = true;
+            await this.$store.dispatch("takePart", {
+                ...this.item,
+                phone_number: this.phoneNumber,
+                mail_address: this.email
+            });
+            this.loading = false;
+            this.showTakePartDialog = false;
         }
     }
 </script>
