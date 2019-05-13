@@ -15,6 +15,8 @@
     "fp-ts": "^1.15.1",
     "lodash.partial": "^4.2.1",
     "material-design-icons-iconfont": "^3.0.3",
+    "pdfmake": "^0.1.56",
+    "pdfmake-unicode": "^0.0.1",
     "roboto-fontface": "*",
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@types/lodash.partial": "^4.2.6",
+    "@types/pdfmake": "^0.1.5",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-typescript": "^3.5.0",
     "@vue/cli-service": "^3.5.0",

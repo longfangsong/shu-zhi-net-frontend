@@ -15,10 +15,12 @@
         components: {BookCard}
     })
     export default class Books extends Vue {
-        async mounted() {
-            if (this.$store.getters.logged) {
-                await this.$store.dispatch("fetchBooks");
-            }
+        private async mounted() {
+            setTimeout(async () => {
+                if (this.$store.getters.logged) {
+                    await this.$store.dispatch("fetchBooks");
+                }
+            }, 500);
         }
     }
 </script>
