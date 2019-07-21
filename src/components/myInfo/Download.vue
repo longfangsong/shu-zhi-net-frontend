@@ -4,22 +4,14 @@
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
-
-    const pdfMake = require('pdfmake/build/pdfmake.js');
-    const pdfMakeFont = require('@/tools/pdf/vfs_fonts.js');
-    pdfMake.vfs = pdfMakeFont.pdfMake.vfs;
+    import Axios from 'axios';
 
     @Component
     export default class Download extends Vue {
         download() {
-            pdfMake.fonts = {
-                NotoSansHans: {
-                    normal: 'NotoSansHans-Regular.1.ttf'
-                }
-            };
             let pdfData = {
                 defaultStyle: {
-                    font: 'NotoSansHans'
+                    font: 'SourceHanSans'
                 },
                 content: [
                     {text: '电子档案', style: 'header'},
@@ -72,7 +64,16 @@
                     }
                 }
             };
-            pdfMake.createPdf(pdfData).open();
+            Axios.post('/api/pdf-generator', pdfData, {responseType: 'blob'})
+                .then(it => {
+                    const file = new File([it.data], '1.pdf', {type: 'application/pdf'});
+                    const fileURL = URL.createObjectURL(file);
+                    let fileLink = document.createElement('a');
+                    fileLink.href = fileURL;
+                    fileLink.download = '学生情况.pdf';
+                    fileLink.click();
+                })
+            ;
         }
     }
 </script>

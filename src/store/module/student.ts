@@ -39,7 +39,7 @@ const mutations = {
 
 const actions = {
     async login({commit}: ActionContext<State, any>, payload: { username: string, password: string }) {
-        const [response] = await Promise.all(['shu-zhi-net', 'volunteer', 'library']
+        const [response] = await Promise.all(['shu-zhi-net', 'volunteer', /*'library'*/]
             .map((it) => Axios.post('/auth/login/' + it, {
                 username: payload.username,
                 password: payload.password
