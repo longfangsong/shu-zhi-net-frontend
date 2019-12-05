@@ -1,6 +1,7 @@
 FROM node:10.15.3-alpine as builder
 COPY . /shuzhinetfrontend
 WORKDIR /shuzhinetfrontend
+ENV BASE_URL '/shuzhi'
 RUN npm install -g yarn && yarn && yarn build
 
 FROM nginx:1.15.11-alpine

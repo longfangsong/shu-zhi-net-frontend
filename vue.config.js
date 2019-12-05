@@ -1,6 +1,7 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
+    publicPath: '/shuzhi',
     configureWebpack: {
         plugins: [
             new BundleAnalyzerPlugin({
