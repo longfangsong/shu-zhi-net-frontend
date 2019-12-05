@@ -10,7 +10,7 @@ import Axios from 'axios';
 // @ts-ignore
 import VueOverwatchLoading from 'vue-overwatch-loading';
 
-Axios.defaults.baseURL = process.env.VUE_APP_BACKEND_ADDRESS || 'http://cloud.shu.xn--io0a7i:30000';
+Axios.defaults.baseURL = process.env.VUE_APP_BACKEND_ADDRESS || 'https://cloud.shuosc.com';
 Vue.config.productionTip = false;
 Vue.use(VueOverwatchLoading);
 
